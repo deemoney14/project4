@@ -93,10 +93,18 @@ resource "aws_route_table" "private-rt" {
 
 locals {
     public_sub = {
-        "subnet1" = aws_subnet.public.
-        "subnet2" = aws_subnet
+        "subnet1" = aws_subnet.public-subnet1AZ1.id,
+        "subnet2" = aws_subnet.public-subnet2AZ2.id
     }
  
+
+}
+
+locals {
+  private_subnet = {
+    "subnet1" = aws_subnet.private-webserverAZ1.id,
+    "subnet2" = aws_subnet.private-webserverAZ2.id
+  }
 }
 resource "aws_route_table_association" "public-assoc" {
     subnet_id = aws_subnet.public-subnet1AZ1.id
